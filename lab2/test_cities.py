@@ -1,108 +1,89 @@
 import unittest
-
-from NER.engine.AddressNERHypothesis import AddressNERHypothesis
-from NER.engine.NERModel import NERModel
+from AddressNERHypothesis import AddressNERHypothesis
 
 
 class TestCity(unittest.TestCase):
     def setUp(self):
-        self.NERInstance = NERModel()
+        self.NERInstance = AddressNERHypothesis()
 
     def test_1(self):
         testing_address = 'проспект комсомольский 50'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_2(self):
         testing_address = 'город липецк улица катукова 36 a'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('липецк', 'город'))
-
 
     def test_3(self):
         testing_address = 'сургут улица рабочая дом 31а'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('сургут', None))
 
     def test_4(self):
         testing_address = 'город липецк доватора 18'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('липецк', 'город'))
 
     def test_5(self):
         testing_address = 'ну бехтеева 9 квартира 310'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_6(self):
         testing_address = 'сургут югорская 30/2'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('сургут', None))
 
     def test_7(self):
         testing_address = 'индекс 12 мне вот этого не надо'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_8(self):
         testing_address = 'ты сургут улица 30 лет победы'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('сургут', None))
 
     def test_9(self):
         testing_address = 'надо 50% город нальчик горького 1257'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('нальчик', 'город'))
 
     def test_10(self):
         testing_address = 'null'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_11(self):
         testing_address = '60 мегабит я'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_12(self):
         testing_address = 'сургут крылова 53/4'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('сургут', None))
 
     def test_13(self):
         testing_address = 'так москва хамовнический вал но я думаю что я еще обсужу со своими домашними то есть вот у нас цифровое телевидение есть но акадо вот вы не спешите я тогда вам наберу но либо в приложения'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, ('москва', None))
 
     def test_14(self):
         testing_address = 'мое 3 парковая'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_15(self):
         testing_address = 'Пришвина 17'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
     def test_16(self):
         testing_address = 'Старый Гай 1 корпус 2'
-        addressNER = AddressNERHypothesis(testing_address)
-        res: AddressNERHypothesis = self.NERInstance.predict(addressNER)
+        res: AddressNERHypothesis = self.NERInstance.predict(testing_address)
         self.assertEqual(res.city, (None, None))
 
 
